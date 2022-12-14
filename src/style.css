@@ -1,0 +1,13 @@
+textview#main_text_view {
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+dimming{
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+clamp{
+	background-color : @view_bg_color;
+}

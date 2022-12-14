@@ -1,0 +1,12 @@
+[package]
+name = "sussy-text-edit"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+adw = { version = "0.2.1", package = "libadwaita" }
+gtk = { version = "0.5.2", package = "gtk4" }
+gdk4 = "0.5.4"
+glib = "0.16.6"
