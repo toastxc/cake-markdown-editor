@@ -25,7 +25,7 @@ fn build_main_win(app: &adw::Application) {
     .title_widget(&gtk::Label::builder().label("sus").build())
     .build();
 
-    let menu_button = gtk::ToggleButton::builder()
+    let menu_button = gtk::MenuButton::builder()
     .icon_name("open-menu-symbolic")
     .build();
     main_header.pack_end(&menu_button);
@@ -34,8 +34,14 @@ fn build_main_win(app: &adw::Application) {
     .icon_name("sidebar-show-symbolic")
     .build();
     main_header.pack_start(&flap_button);
+// ---------------- popover menu setup ------------------------ -- //
+    let pop_menu_model = gio::Menu::new();
+    pop_menu_model.append(Some("About"), Some("gock"));
+
+    menu_button.set_menu_model(Some(&pop_menu_model));
 
 // ---------------- side bar setup ------------------------ -- //
+
     let side_header = adw::HeaderBar::builder()
     .show_end_title_buttons(false)
     .show_start_title_buttons(false)
@@ -61,6 +67,7 @@ fn build_main_win(app: &adw::Application) {
 
     let side_flap = gtk::Box::builder()
     .orientation(gtk::Orientation::Vertical)
+    .name("sidebar")
     .width_request(250)
     .build();
     main_view.set_flap(Some(&side_flap));
@@ -68,9 +75,12 @@ fn build_main_win(app: &adw::Application) {
 
 // ---------------- side flap ------------------------------ //
     let flap_list_box = gtk::ListBox::builder().build();
-    let cloned_view = main_view.clone();
+
+    //flap_list_box.append(&folder_treeview);
 
     side_flap.append(&flap_list_box);
+
+    let cloned_view = main_view.clone();
     flap_button.connect_clicked(move |side_button| {
         open_close_flap(&side_button, &cloned_view);
     });
@@ -81,7 +91,7 @@ fn build_main_win(app: &adw::Application) {
     .build();
 
     let boxy = gtk::Box::builder().orientation(gtk::Orientation::Vertical)
-    .width_request(400)
+    .width_request(300)
     .build();
     boxy.append(&main_header);
     main_view.set_content(Some(&boxy));
@@ -115,5 +125,4 @@ fn build_main_win(app: &adw::Application) {
 fn open_close_flap(_button : &gtk::Button, flap : &adw::Flap ){
     println!("flap button on/off");
     flap.set_reveal_flap(!flap.reveals_flap());
-    
 }

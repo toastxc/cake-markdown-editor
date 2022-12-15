@@ -10,3 +10,4 @@ adw = { version = "0.2.1", package = "libadwaita" }
 gtk = { version = "0.5.2", package = "gtk4" }
 gdk4 = "0.5.4"
 glib = "0.16.6"
+gio = "0.16.6"
