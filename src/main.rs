@@ -1,16 +1,14 @@
-use gtk::{prelude::*};
+mod windows {pub mod main_window;}
 
-mod windows {
-    pub mod main_window;
-    pub use main_window::main_window::build_main_win;
-}
+use gtk::prelude::*;
+use windows::main_window::main_window::build_main_win;
 
 const ID_APP : &str = "io.github.singleslice.text-edit";
 
 fn main() {
     let app = adw::Application::builder().application_id(ID_APP).build();
     app.connect_startup(|_| load_stylesheet());
-    app.connect_activate(windows::build_main_win);
+    app.connect_activate(build_main_win);
     app.run();
 }
 
