@@ -22,9 +22,11 @@ pub mod main_window {
         main_header.pack_end(&menu_button);
 
     // ---------------- popover menu setup ------------------------ -- //
-        let pop_menu_model = gio::Menu::new();
-        pop_menu_model.append(Some("About"), Some("gock"));
-        menu_button.set_menu_model(Some(&pop_menu_model));
+        
+        // TODO : menu
+        //let pop_menu_model = gio::Menu::new();
+        //pop_menu_model.append(Some("About"), Some(gock));
+        //menu_button.set_menu_model(Some(&pop_menu_model));
 
     // ---------------- side bar setup ------------------------ -- //
     
