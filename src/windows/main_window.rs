@@ -118,8 +118,8 @@ pub mod main_window {
         let char_count = gtk::Label::builder().label("0").name("char_count").margin_end(10).build();
         let char_count_clone = char_count.clone();
 
-        main_text_view_buffer.connect_changed(move | text_buffer | {on_text_buffer_change(text_buffer, &char_count_clone)});
-
+        main_text_view_buffer.connect_changed(move | text_buffer | {update_char_counter(text_buffer, &char_count_clone)});
+        main_text_view_buffer.connect_changed(find_headers);
 
         boxy.append(&bottom_box);
         bottom_box.append(&char_count_label);
@@ -142,7 +142,12 @@ pub mod main_window {
         flap.set_reveal_flap(!flap.reveals_flap());
     }
 
-    fn on_text_buffer_change(buffer : &gtk::TextBuffer, char_label : &gtk::Label){
+    fn update_char_counter(buffer : &gtk::TextBuffer, char_label : &gtk::Label){
         char_label.set_label(&buffer.char_count().to_string());
     }
+
+    fn find_headers(buffer : &gtk::TextBuffer){
+
+    }
+
 }
