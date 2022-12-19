@@ -129,7 +129,7 @@ pub mod main_window {
         let window = adw::ApplicationWindow::builder()
         .application(app)
         .content(&main_view)
-        .title("Cake Text")
+        .title("CakeMD")
         .default_width(800)
         .default_height(450)
         .height_request(200)
@@ -147,7 +147,6 @@ pub mod main_window {
     }
 
     fn find_headers(buffer : &gtk::TextBuffer){
-
     }
 
 }
