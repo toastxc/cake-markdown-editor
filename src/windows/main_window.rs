@@ -2,7 +2,6 @@ pub mod main_window {
     use gtk::prelude::*;
 
     pub fn build_main_win(app: &adw::Application) {
-
     // ---------------- main bar setup ------------------------ -- //
         let title_file_name = gtk::Label::builder().label("Sample name for a file").build();
         let main_header = adw::HeaderBar::builder()
@@ -43,9 +42,9 @@ pub mod main_window {
         .icon_name("document-new-symbolic")
         .build();
 
-
-        side_header.pack_end(&open_folder_button);
+        
         side_header.pack_start(&new_page_button);
+        side_header.pack_end(&open_folder_button);
     
     // ---------------- flap setup ------------------------------ //
         let main_view = (adw::Flap::builder())
@@ -146,7 +145,7 @@ pub mod main_window {
         char_label.set_label(&buffer.char_count().to_string());
     }
 
-    fn find_headers(buffer : &gtk::TextBuffer){
+    fn find_headers(_buffer : &gtk::TextBuffer){
     }
 
 }

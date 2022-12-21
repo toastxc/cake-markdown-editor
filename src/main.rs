@@ -15,7 +15,7 @@ fn main() {
     app.run();
 }
 
-fn create_config_dir(){ // creates config directory
+fn create_config_dir(){ // creates config direcory
     let user_dirs = directories::ProjectDirs::from("io", "singleslice", "CakeMD");
     let config_dir_exist = user_dirs.as_ref().unwrap().config_dir().exists();
 
