@@ -6,7 +6,7 @@ This is a small personal project, trying to make an obsidian-clone but opensourc
 
 ## todo :
 - [x] char counter
-- [ ] word counter | (may not be possible with type gtk::TextBuffer
+- [ ] word counter
 - [X] line counter
 - [ ] finish at least the main ui
 
