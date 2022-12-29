@@ -172,11 +172,7 @@ pub mod main_window {
             line_n = line_n + 1;
             if line.starts_with("# "){
                 println!("Header found at line {} = {}",line_n, line);
-                
-                let end_offset = buffer.iter_at_line_index(line_n, line.len().try_into().unwrap());
-                if !end_offset.is_none(){
-                    buffer.apply_tag_by_name("Header_1", &buffer.start_iter(), &end_offset.unwrap()); // doesnt work properly yet !!!!
-                }
+                buffer.apply_tag_by_name("Header_1", &buffer.start_iter(), &buffer.end_iter()); // doesnt work properly yet !!!!
             }
         }
     }
