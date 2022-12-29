@@ -105,27 +105,38 @@ pub mod main_window {
 
         // WARNING: THE VALUES FOR THESE HEADERS ARE BASED ON NO VALUES (i made it up)
         clamp.set_child(Some(&main_text_view));
-        let header_1_tag = main_text_view_buffer.create_tag(
+        let _header_1_tag = main_text_view_buffer.create_tag(
         Some("Header_1"), 
-        &[(&"scale", &1.7_f64),
-        (&"weight", &500_i32)
+        &[(&"scale", &2.2_f64),
+        (&"weight", &800_i32)
         ]);
         
         clamp.set_child(Some(&main_text_view));
-        let header_2_tag = main_text_view_buffer.create_tag(
-        Some("Header_2"), 
-        &[(&"scale", &1.6_f64),
-        (&"weight", &500_i32)
-        ]);
+        let _header_2_tag = main_text_view_buffer.create_tag(
+        Some("Header_2"),&[(&"scale", &2.0_f64), (&"weight", &700_i32)]);
         
+        let _header_3_tag = main_text_view_buffer.create_tag(
+        Some("Header_3"),&[(&"scale", &1.8_f64), (&"weight", &600_i32)]);
+
+        let _header_4_tag = main_text_view_buffer.create_tag(
+            Some("Header_4"), 
+            &[(&"scale", &1.6_f64),
+            (&"weight", &500_i32)
+        ]);
+
+        let _header_5_tag = main_text_view_buffer.create_tag(
+            Some("Header_5"), 
+            &[(&"scale", &1.4_f64),
+            (&"weight", &400_i32)
+        ]);
+
+        let _header_6_tag = main_text_view_buffer.create_tag(
+            Some("Header_6"), 
+            &[(&"scale", &1.2_f64),
+            (&"weight", &300_i32)
+        ]);
+
         clamp.set_child(Some(&main_text_view));
-        let header_3_tag = main_text_view_buffer.create_tag(
-        Some("Header_3"), 
-        &[(&"scale", &1.5_f64),
-        (&"weight", &500_i32)
-        ]);
-        
-        
 
 
     // ---------------- text char count ------------------------ //
@@ -225,10 +236,11 @@ pub mod main_window {
                (Some('>'), _, _, _, _) => {"b1"},
                
                // no formatting
-               (_, _, _, _, _) => {"no"},  
+               (_, _, _, _, _) => {"no"},
            };
            if style != "no" {
-               println!("line {} has style {}", c, style);
+                buffer.remove_all_tags(&buffer.iter_at_line(c - 1).unwrap(), &buffer.iter_at_line_offset(c -1, x.chars().count() as i32).unwrap());
+                println!("line {} has style {}", c, style);
                
                 // once names are figured out, "Header_1" will be replaced wiith the output of the above match ^
                buffer.apply_tag_by_name(style, &buffer.iter_at_line(c - 1).unwrap(), &buffer.iter_at_line_offset(c -1, x.chars().count() as i32).unwrap());
