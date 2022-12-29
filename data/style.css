@@ -21,7 +21,7 @@ list{
     padding-right : 5px;
 }
 
-label#char_count{
+label#Char_count, label#Line_count{
     padding-top: 3px;
     padding-bottom: 3px;
     font-size: 12px;

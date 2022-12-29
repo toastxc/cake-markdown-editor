@@ -113,12 +113,12 @@ pub mod main_window {
         .halign(gtk::Align::End)
         .build();
 
-        let char_count_label = gtk::Label::builder().label("Char: ").name("char_count").build();
-        let char_count = gtk::Label::builder().label("0").name("char_count").margin_end(10).build();
+        let char_count_label = gtk::Label::builder().label("Char: ").name("Char_count").build();
+        let char_count = gtk::Label::builder().label("0").name("Char_count").margin_end(10).build();
         let char_count_clone = char_count.clone();
         
         
-        let line_count_label = gtk::Label::builder().label("Line: ").name("Line_count").build();
+        let line_count_label = gtk::Label::builder().label("Lines: ").name("Line_count").build();
         let line_count = gtk::Label::builder().label("0").name("Line_count").margin_end(10).build();
         let line_count_clone = line_count.clone();
         
