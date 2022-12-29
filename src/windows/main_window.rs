@@ -165,13 +165,18 @@ pub mod main_window {
     }
 
     fn find_headers(buffer : &gtk::TextBuffer){
-        let text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), true); 
+        let text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), true);
+        let mut line_n = 0;
 
         for line in text.lines() {
+            line_n = line_n + 1;
             if line.starts_with("# "){
-                println!("Header found = {}", line);
-                let end_offset = buffer.iter_at_offset(line.chars().count().try_into().unwrap());
-                buffer.apply_tag_by_name("Header_1", &buffer.start_iter(), &end_offset); // doesnt work properly yet !!!!
+                println!("Header found at line {} = {}",line_n, line);
+                
+                let end_offset = buffer.iter_at_line_index(line_n, line.len().try_into().unwrap());
+                if !end_offset.is_none(){
+                    buffer.apply_tag_by_name("Header_1", &buffer.start_iter(), &end_offset.unwrap()); // doesnt work properly yet !!!!
+                }
             }
         }
     }
