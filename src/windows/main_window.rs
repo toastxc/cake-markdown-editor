@@ -205,19 +205,19 @@ pub mod main_window {
                (Some('#'), Some('#'), _, _, _) => {"Header_2"},
                (Some('#'), _, _, _, _) => {"Header_1"},
                
-               // italitcs, bold, ib
+               // italitcs, bold, and both
                (Some('*'), Some('*'), Some('*'), _, _) => {"i"},
                (Some('*'), Some('*'), _, _, _) => {"b"}
                (Some('*'), _, _, _, _) => {"bi"}
                
-               // lists
+               // lists (max indent 5)
                (Some('-'), Some('-'), Some('-'), Some('-'), Some('-')) => {"l5"},
                (Some('-'), Some('-'), Some('-'), Some('-'), _) => {"l4"},
                (Some('-'), Some('-'), Some('-'), _, _) => {"l3"},
                (Some('-'), Some('-'), _, _, _) => {"l2"},
                (Some('-'), _, _, _, _) => {"l1"},
               
-               // blocks
+               // blocks (max indent 5)
                (Some('>'), Some('>'), Some('>'), Some('>'), Some('>')) => {"b5"},
                (Some('>'), Some('>'), Some('>'), Some('>'), _) => {"b4"},
                (Some('>'), Some('>'), Some('>'), _, _) => {"b3"},
@@ -228,7 +228,6 @@ pub mod main_window {
                (_, _, _, _, _) => {"no"},  
            };
            if style != "no" {
-               println!("line {} has style {}", c, style);
                
                 // once names are figured out, "Header_1" will be replaced wiith the output of the above match ^
                buffer.apply_tag_by_name(style, &buffer.iter_at_line(c - 1).unwrap(), &buffer.iter_at_line_offset(c -1, x.chars().count() as i32).unwrap());
