@@ -107,14 +107,14 @@ pub mod main_window {
         clamp.set_child(Some(&main_text_view));
         let header_1_tag = main_text_view_buffer.create_tag(
         Some("Header_1"), 
-        &[(&"scale", &1.5_f64),
+        &[(&"scale", &1.7_f64),
         (&"weight", &500_i32)
         ]);
         
         clamp.set_child(Some(&main_text_view));
         let header_2_tag = main_text_view_buffer.create_tag(
         Some("Header_2"), 
-        &[(&"scale", &1.5_f64),
+        &[(&"scale", &1.6_f64),
         (&"weight", &500_i32)
         ]);
         
