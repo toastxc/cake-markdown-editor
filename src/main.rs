@@ -1,4 +1,5 @@
 mod windows {pub mod main_window;}
+mod markdown_parser;
 
 use gtk::prelude::*;
 use windows::main_window::main_window::build_main_win;
