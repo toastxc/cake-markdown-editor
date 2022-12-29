@@ -19,7 +19,7 @@ fn create_config_dir(){ // creates config direcory
     let user_dirs = directories::ProjectDirs::from("io", "singleslice", "CakeMD");
     let config_dir_exist = user_dirs.as_ref().unwrap().config_dir().exists();
 
-    if config_dir_exist == false {
+    if !config_dir_exist {
         println!("config directory {} not found. creating.", directories::ProjectDirs::from("io", "singleslice", "CakeMD").unwrap().config_dir().display());
         std::fs::DirBuilder::new().create(user_dirs.unwrap().config_dir()).expect("fuck, shit");
     }

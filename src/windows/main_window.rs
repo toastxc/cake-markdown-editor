@@ -72,7 +72,7 @@ pub mod main_window {
     
         let cloned_view = main_view.clone();
         flap_button.connect_clicked(move |flap_button| {
-            open_close_flap(&flap_button, &cloned_view);
+            open_close_flap(flap_button, &cloned_view);
         });
     
     // ---------------- main win ------------------------------ //
@@ -113,16 +113,32 @@ pub mod main_window {
         .halign(gtk::Align::End)
         .build();
 
-        let char_count_label = gtk::Label::builder().label("Char count: ").name("char_count").build();
+        let char_count_label = gtk::Label::builder().label("Char: ").name("char_count").build();
         let char_count = gtk::Label::builder().label("0").name("char_count").margin_end(10).build();
         let char_count_clone = char_count.clone();
+        
+        
+        let line_count_label = gtk::Label::builder().label("Line: ").name("Line_count").build();
+        let line_count = gtk::Label::builder().label("0").name("Line_count").margin_end(10).build();
+        let line_count_clone = line_count.clone();
+        
 
-        main_text_view_buffer.connect_changed(move | text_buffer | {update_char_counter(text_buffer, &char_count_clone)});
+
+        main_text_view_buffer.connect_changed(move | text_buffer | {
+            update_counter(text_buffer, &char_count_clone, &line_count_clone)
+            });
         main_text_view_buffer.connect_changed(find_headers);
 
         boxy.append(&bottom_box);
+        
+        bottom_box.append(&line_count_label);
+        bottom_box.append(&line_count);
+        
         bottom_box.append(&char_count_label);
         bottom_box.append(&char_count);
+  
+        
+        
 
     // ---------------- window ------------------------------- //
         let window = adw::ApplicationWindow::builder()
@@ -141,8 +157,10 @@ pub mod main_window {
         flap.set_reveal_flap(!flap.reveals_flap());
     }
 
-    fn update_char_counter(buffer : &gtk::TextBuffer, char_label : &gtk::Label){
-        char_label.set_label(&buffer.char_count().to_string());
+    fn update_counter(buffer : &gtk::TextBuffer, char_label : &gtk::Label, line_label: &gtk::Label){
+        char_label.set_label(&buffer.char_count().to_string());        
+        line_label.set_label(&buffer.line_count().to_string());
+        
     }
 
     fn find_headers(_buffer : &gtk::TextBuffer){
