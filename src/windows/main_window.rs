@@ -104,6 +104,12 @@ pub mod main_window {
 
 
         clamp.set_child(Some(&main_text_view));
+        let header_1_tag = main_text_view_buffer.create_tag(
+        Some("Header_1"), 
+        &[(&"scale", &2.5_f64),
+        (&"weight", &500_i32)
+        ]);
+
 
     // ---------------- text char count ------------------------ //
         let bottom_box = gtk::Box::builder()
@@ -164,6 +170,8 @@ pub mod main_window {
         for line in text.lines() {
             if line.starts_with("# "){
                 println!("Header found = {}", line);
+                let end_offset = buffer.iter_at_offset(line.chars().count().try_into().unwrap());
+                buffer.apply_tag_by_name("Header_1", &buffer.start_iter(), &end_offset); // doesnt work properly yet !!!!
             }
         }
     }
