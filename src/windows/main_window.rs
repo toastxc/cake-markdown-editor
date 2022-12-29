@@ -96,15 +96,14 @@ pub mod main_window {
             .build();
 
         let main_text_view_buffer = main_text_view.buffer();
+        clamp.set_child(Some(&main_text_view));
 
         // WARNING: THE VALUES FOR THESE HEADERS ARE BASED ON NO VALUES (i made it up)
-        clamp.set_child(Some(&main_text_view));
         let _header_1_tag = main_text_view_buffer.create_tag(
             Some("Header_1"),
             &[(&"scale", &2.2_f64), (&"weight", &800_i32)],
         );
 
-        clamp.set_child(Some(&main_text_view));
         let _header_2_tag = main_text_view_buffer.create_tag(
             Some("Header_2"),
             &[(&"scale", &2.0_f64), (&"weight", &700_i32)],
@@ -129,8 +128,6 @@ pub mod main_window {
             Some("Header_6"),
             &[(&"scale", &1.2_f64), (&"weight", &300_i32)],
         );
-
-        clamp.set_child(Some(&main_text_view));
 
         // ---------------- text char count ------------------------ //
         let bottom_box = gtk::Box::builder()

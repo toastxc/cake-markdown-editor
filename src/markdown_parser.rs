@@ -56,7 +56,6 @@ pub mod markdown {
                         .iter_at_line_offset(c - 1, x.chars().count() as i32)
                         .unwrap(),
                 );
-                println!("line {} has style {}", c, style);
 
                 // once names are figured out, "Header_1" will be replaced wiith the output of the above match ^
                 buffer.apply_tag_by_name(
