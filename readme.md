@@ -11,6 +11,9 @@ This is a small personal project, trying to make an obsidian-clone but opensourc
 - [ ] finish at least the main ui
 
 - [ ] parsing markdown
+    - [X] finding headers
+    - [ ] finding bold characters
+- [ ] styling markdown
 - [ ] opening files
 - [ ] opening folders
 - [ ] importing images
