@@ -160,8 +160,8 @@ pub mod main_window {
 
     fn find_headers(buffer : &gtk::TextBuffer){
         let text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), true); 
-        let lines: Vec<&str> = text.split("\n").collect();
-        for line in lines {
+
+        for line in text.lines() {
             if line.starts_with("# "){
                 println!("Header found = {}", line);
             }
