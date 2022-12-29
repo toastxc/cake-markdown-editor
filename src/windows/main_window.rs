@@ -83,7 +83,6 @@ pub mod main_window {
         let boxy = gtk::Box::builder().orientation(gtk::Orientation::Vertical)
         .width_request(300)
         .build();
-
     
         let scroll_win = gtk::ScrolledWindow::builder()
         .vexpand(true)
@@ -117,11 +116,9 @@ pub mod main_window {
         let char_count = gtk::Label::builder().label("0").name("Char_count").margin_end(10).build();
         let char_count_clone = char_count.clone();
         
-        
         let line_count_label = gtk::Label::builder().label("Lines: ").name("Line_count").build();
         let line_count = gtk::Label::builder().label("0").name("Line_count").margin_end(10).build();
         let line_count_clone = line_count.clone();
-        
 
 
         main_text_view_buffer.connect_changed(move | text_buffer | {
@@ -129,15 +126,13 @@ pub mod main_window {
             });
         main_text_view_buffer.connect_changed(find_headers);
 
+
         boxy.append(&bottom_box);
         
         bottom_box.append(&line_count_label);
         bottom_box.append(&line_count);
-        
         bottom_box.append(&char_count_label);
         bottom_box.append(&char_count);
-  
-        
         
 
     // ---------------- window ------------------------------- //
@@ -163,7 +158,14 @@ pub mod main_window {
         
     }
 
-    fn find_headers(_buffer : &gtk::TextBuffer){
+    fn find_headers(buffer : &gtk::TextBuffer){
+        let text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), true); 
+        let lines: Vec<&str> = text.split("\n").collect();
+        for line in lines {
+            if line.starts_with("# "){
+                println!("Header found = {}", line);
+            }
+        }
     }
 
 }
