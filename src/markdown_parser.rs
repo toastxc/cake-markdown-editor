@@ -28,8 +28,8 @@ pub mod markdown {
                 (Some('#'), _, _, _, _) => "Header_1",
 
                 // italitcs, bold, ib
-                (Some('*'), Some('*'), Some('*'), _, _) => "i",
-                (Some('*'), Some('*'), _, _, _) => "b",
+                (Some('*'), Some('*'), Some('*'), _, _) => "italic",
+                (Some('*'), Some('*'), _, _, _) => "bold",
                 (Some('*'), _, _, _, _) => "bi",
 
                 // lists
@@ -47,9 +47,9 @@ pub mod markdown {
                 (Some('>'), _, _, _, _) => "b1",
 
                 // no formatting
-                (_, _, _, _, _) => "no",
+                (_, _, _, _, _) => "none",
             };
-            if style != "no" {
+            if style != "none" {
                 buffer.remove_all_tags(
                     &buffer.iter_at_line(c - 1).unwrap(),
                     &buffer
