@@ -125,7 +125,7 @@ pub mod main_window {
         (&"weight", &500_i32)
         ]);
         
-        
+
 
 
     // ---------------- text char count ------------------------ //
@@ -227,13 +227,15 @@ pub mod main_window {
                // no formatting
                (_, _, _, _, _) => {"no"},  
            };
-           if style != "no" {
-               
-                // once names are figured out, "Header_1" will be replaced wiith the output of the above match ^
-               buffer.apply_tag_by_name(style, &buffer.iter_at_line(c - 1).unwrap(), &buffer.iter_at_line_offset(c -1, x.chars().count() as i32).unwrap());
-        
-           };
+           let (line_start, line_end)  = (&buffer.iter_at_line(c - 1).unwrap(), &buffer.iter_at_line_offset(c -1, x.chars().count() as i32).unwrap());
            
+           if style != "no" {
+                // once names are figured out, "Header_1" will be replaced wiith the output of the above match ^
+               buffer.apply_tag_by_name(style, line_start, line_end);
+           }else  {
+               buffer.remove_all_tags(line_start, line_end)
+             
+           };
           
        };
         
