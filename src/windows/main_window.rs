@@ -1,4 +1,5 @@
 pub mod main_window {
+    use std::process::Command;
     use gtk::prelude::*;
 
     pub fn build_main_win(app: &adw::Application) {
@@ -45,6 +46,22 @@ pub mod main_window {
         
         side_header.pack_start(&new_page_button);
         side_header.pack_end(&open_folder_button);
+        
+        
+        open_folder_button.connect_clicked(move |_| {
+           
+           Command::new("nautilus")
+           .arg("./md").output().unwrap();
+        });
+        
+        new_page_button.connect_clicked(move |_| {
+          
+           Command::new("touch")
+           .arg("./md/NewFile.md").output().unwrap();
+        });
+       
+        
+    
     
     // ---------------- flap setup ------------------------------ //
         let main_view = (adw::Flap::builder())
@@ -58,6 +75,7 @@ pub mod main_window {
         .name("sidebar")
         .width_request(250)
         .build();
+
 
 
         main_view.set_flap(Some(&side_flap));
